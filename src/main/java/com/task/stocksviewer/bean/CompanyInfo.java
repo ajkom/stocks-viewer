@@ -1,7 +1,6 @@
 package com.task.stocksviewer.bean;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class CompanyInfo {
@@ -32,7 +31,7 @@ public class CompanyInfo {
 		this.dateValueList = dateValueList;
 	}
 
-	public void addDateValue(LocalDate date, float value){
+	public void addDateValue(LocalDate date, double value){
 		this.dateValueList.add(new DateValue(date, value));
 	}
 }

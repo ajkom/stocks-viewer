@@ -1,6 +1,6 @@
 package com.task.stocksviewer.controller;
 
-import com.task.stocksviewer.bean.StockInfo;
+import com.task.stocksviewer.bean.CompanyInfo;
 import com.task.stocksviewer.service.StockInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,12 +18,7 @@ public class StockInfoController {
 	StockInfoService service;
 
 	@RequestMapping(path = "/stockInfo")
-	public List<StockInfo> getStockInfo() throws IOException, URISyntaxException {
-		return service.readCsvFile();
-	}
-
-	@RequestMapping(path = "/hello")
-	public String hello() {
-		return "hello";
+	public List<CompanyInfo> getStockInfo() throws IOException, URISyntaxException {
+		return service.getStockInfo();
 	}
 }

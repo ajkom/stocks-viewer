@@ -11,18 +11,26 @@ public class StockInfo {
     private LocalDate date;
 
     @CsvBindByPosition(position = 1, required = true)
-    private float valueNokia;
+    private double valueNokia;
 
     @CsvBindByPosition(position = 2, required = true)
-    private float valueNordea;
+    private double valueNordea;
 
     @CsvBindByPosition(position = 3, required = true)
-    private float valueMicrosoft;
+    private double valueMicrosoft;
 
     @CsvBindByPosition(position = 4, required = true)
-    private float valueTelia;
+    private double valueTelia;
 
     public StockInfo() {
+    }
+
+    public StockInfo(LocalDate date, double valueNokia, double valueNordea, double valueMicrosoft, double valueTelia) {
+        this.date = date;
+        this.valueNokia = valueNokia;
+        this.valueNordea = valueNordea;
+        this.valueMicrosoft = valueMicrosoft;
+        this.valueTelia = valueTelia;
     }
 
     public LocalDate getDate() {
@@ -33,35 +41,35 @@ public class StockInfo {
         this.date = date;
     }
 
-    public float getValueNokia() {
+    public double getValueNokia() {
         return valueNokia;
     }
 
-    public void setValueNokia(float valueNokia) {
+    public void setValueNokia(double valueNokia) {
         this.valueNokia = valueNokia;
     }
 
-    public float getValueNordea() {
+    public double getValueNordea() {
         return valueNordea;
     }
 
-    public void setValueNordea(float valueNordea) {
+    public void setValueNordea(double valueNordea) {
         this.valueNordea = valueNordea;
     }
 
-    public float getValueMicrosoft() {
+    public double getValueMicrosoft() {
         return valueMicrosoft;
     }
 
-    public void setValueMicrosoft(float valueMicrosoft) {
+    public void setValueMicrosoft(double valueMicrosoft) {
         this.valueMicrosoft = valueMicrosoft;
     }
 
-    public float getValueTelia() {
+    public double getValueTelia() {
         return valueTelia;
     }
 
-    public void setValueTelia(float valueTelia) {
+    public void setValueTelia(double valueTelia) {
         this.valueTelia = valueTelia;
     }
 

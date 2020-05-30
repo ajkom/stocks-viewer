@@ -20,15 +20,15 @@ import java.util.List;
 @Service
 public class StockInfoService {
 
-    private ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-    private String FILE_NAME = "DATA.csv";
+    private final ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+    private final String FILE_NAME = "DATA.csv";
 
     public List<CompanyInfo> getStockInfo() throws IOException, URISyntaxException {
         List<StockInfo> infoFromFile = readCsvFile();
         return parseDataPerCompany(infoFromFile);
     }
 
-    private List<StockInfo> readCsvFile() throws URISyntaxException, IOException {
+    public List<StockInfo> readCsvFile() throws URISyntaxException, IOException {
 
         URL url = classLoader.getResource(FILE_NAME);
         Reader reader = Files.newBufferedReader(Paths.get(url.toURI()));
@@ -46,7 +46,7 @@ public class StockInfoService {
 
     }
 
-    private List<CompanyInfo> parseDataPerCompany(List<StockInfo> stockInfoList) {
+    public List<CompanyInfo> parseDataPerCompany(List<StockInfo> stockInfoList) {
         CompanyInfo nokia = new CompanyInfo("Nokia", new ArrayList<>());
         CompanyInfo nordea = new CompanyInfo("Nordea", new ArrayList<>());
         CompanyInfo microsoft = new CompanyInfo("Microsoft", new ArrayList<>());

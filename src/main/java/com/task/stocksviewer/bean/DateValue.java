@@ -4,12 +4,12 @@ import java.time.LocalDate;
 
 public class DateValue {
 	private LocalDate date;
-	private Float value;
+	private double value;
 
 	public DateValue() {
 	}
 
-	public DateValue(LocalDate date, Float value) {
+	public DateValue(LocalDate date, double value) {
 		this.date = date;
 		this.value = value;
 	}
@@ -22,11 +22,11 @@ public class DateValue {
 		this.date = date;
 	}
 
-	public Float getValue() {
+	public double getValue() {
 		return value;
 	}
 
-	public void setValue(Float value) {
+	public void setValue(double value) {
 		this.value = value;
 	}
 }
