@@ -12,6 +12,7 @@ import java.util.List;
 
 
 @RestController
+@RequestMapping(path = "/api")
 public class StockInfoController {
 	@Autowired
 	StockInfoService service;
@@ -19,5 +20,10 @@ public class StockInfoController {
 	@RequestMapping(path = "/stockInfo")
 	public List<StockInfo> getStockInfo() throws IOException, URISyntaxException {
 		return service.readCsvFile();
+	}
+
+	@RequestMapping(path = "/hello")
+	public String hello() {
+		return "hello";
 	}
 }
