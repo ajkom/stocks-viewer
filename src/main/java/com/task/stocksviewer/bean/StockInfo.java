@@ -11,7 +11,7 @@ public class StockInfo {
     private LocalDate date;
 
     @CsvBindByPosition(position = 1, required = true)
-    private String valueNokia;
+    private float valueNokia;
 
     @CsvBindByPosition(position = 2, required = true)
     private float valueNordea;
@@ -33,11 +33,11 @@ public class StockInfo {
         this.date = date;
     }
 
-    public String getValueNokia() {
+    public float getValueNokia() {
         return valueNokia;
     }
 
-    public void setValueNokia(String valueNokia) {
+    public void setValueNokia(float valueNokia) {
         this.valueNokia = valueNokia;
     }
 
