@@ -4,6 +4,7 @@ import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import com.task.stocksviewer.bean.CompanyInfo;
 import com.task.stocksviewer.bean.StockInfo;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Service
 public class StockInfoService {
 
     private ClassLoader classLoader = ClassLoader.getSystemClassLoader();
@@ -37,7 +39,7 @@ public class StockInfoService {
                 .withSkipLines(1)
                 .build();
 
-        List<StockInfo> stocksList = null;
+        List<StockInfo> stocksList;
 
         stocksList = csvToBean.parse();
         return stocksList;
