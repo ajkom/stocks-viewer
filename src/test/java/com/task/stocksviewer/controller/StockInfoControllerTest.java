@@ -25,10 +25,10 @@ public class StockInfoControllerTest {
 
 	@Test
 	public void testGetStockInfo() throws IOException, URISyntaxException {
-		given(service.getStockInfo()).willReturn(new ArrayList<>());
+		given(service.getDataFromCsvFile()).willReturn(new ArrayList<>());
 
 		controller.getStockInfo();
-		verify(service).getStockInfo();
+		verify(service).getDataFromCsvFile();
 	}
 
 }

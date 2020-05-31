@@ -1,36 +1,36 @@
 package com.task.stocksviewer.bean;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.opencsv.bean.CsvBindByPosition;
 import com.opencsv.bean.CsvDate;
 
 import java.time.LocalDate;
 
-public class StockInfo {
+/**
+ * Map data from the CSV file
+ */
+public class FullStockInfo {
     @CsvBindByPosition(position = 0, required = true)
     @CsvDate(value = "yyyy-MM-dd")
     private LocalDate date;
 
     @CsvBindByPosition(position = 1, required = true)
+    @JsonProperty("Nokia")
     private double valueNokia;
 
     @CsvBindByPosition(position = 2, required = true)
+    @JsonProperty("Nordea")
     private double valueNordea;
 
     @CsvBindByPosition(position = 3, required = true)
+    @JsonProperty("Microsoft")
     private double valueMicrosoft;
 
     @CsvBindByPosition(position = 4, required = true)
+    @JsonProperty("Telia")
     private double valueTelia;
 
-    public StockInfo() {
-    }
-
-    public StockInfo(LocalDate date, double valueNokia, double valueNordea, double valueMicrosoft, double valueTelia) {
-        this.date = date;
-        this.valueNokia = valueNokia;
-        this.valueNordea = valueNordea;
-        this.valueMicrosoft = valueMicrosoft;
-        this.valueTelia = valueTelia;
+    public FullStockInfo() {
     }
 
     public LocalDate getDate() {
@@ -75,8 +75,8 @@ public class StockInfo {
 
     @Override
     public String toString() {
-        return "StockInfo{" +
-                "date='" + date + '\'' +
+        return "FullStockInfo{" +
+                "date=" + date +
                 ", valueNokia=" + valueNokia +
                 ", valueNordea=" + valueNordea +
                 ", valueMicrosoft=" + valueMicrosoft +
