@@ -9,7 +9,7 @@ import java.time.LocalDate;
 /**
  * Map data from the CSV file
  */
-public class FullStockInfo {
+public class StocksInfo {
     @CsvBindByPosition(position = 0, required = true)
     @CsvDate(value = "yyyy-MM-dd")
     private LocalDate date;
@@ -30,7 +30,7 @@ public class FullStockInfo {
     @JsonProperty("Telia")
     private double valueTelia;
 
-    public FullStockInfo() {
+    public StocksInfo() {
     }
 
     public LocalDate getDate() {
