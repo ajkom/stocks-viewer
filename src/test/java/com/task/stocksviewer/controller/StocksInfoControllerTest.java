@@ -1,30 +1,28 @@
 package com.task.stocksviewer.controller;
 
-import com.task.stocksviewer.service.StockInfoService;
+import com.task.stocksviewer.service.StocksInfoService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
-public class StockInfoControllerTest {
+public class StocksInfoControllerTest {
 
 	@InjectMocks
-	private StockInfoController controller = new StockInfoController();
+	private StocksInfoController controller = new StocksInfoController();
 
 	@Mock
-	StockInfoService service;
+	StocksInfoService service;
 
 	@Test
-	public void testGetStockInfo() throws IOException, URISyntaxException {
+	public void testGetStockInfo() throws Exception {
 		given(service.getDataFromCsvFile()).willReturn(new ArrayList<>());
 
 		controller.getStockInfo();

@@ -1,5 +1,5 @@
 import React from 'react';
-import StockInfo from "./components/StockInfo";
+import StocksInfo from "./components/StocksInfo";
 
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
                 Data fetched from backend
             </header>
 
-            <StockInfo/>
+            <StocksInfo/>
         </div>
     );
 }

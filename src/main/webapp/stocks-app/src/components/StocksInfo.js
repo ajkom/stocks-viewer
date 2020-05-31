@@ -2,12 +2,14 @@ import React, {Component} from 'react'
 import axios from 'axios';
 import {CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis} from 'recharts';
 
-export default class StockInfo extends Component {
+export default class StocksInfo extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            stocks: []
+            stocks: [],
+            ticks: ["2017-01-01", "2017-02-01", "2017-03-01","2017-04-01", "2017-05-01", "2017-06-01", "2017-07-01",
+                "2017-08-01", "2017-09-01", "2017-10-01","2017-11-01", "2017-12-01", "2017-12-31"]
         };
     }
 
@@ -32,7 +34,7 @@ export default class StockInfo extends Component {
 
                     <CartesianGrid strokeDasharray="3 3"/>
 
-                    <XAxis dataKey="date" interval={"preserveStartEnd"} minTickGap={28}/>
+                    <XAxis dataKey="date" ticks={this.state.ticks}/>
                     <YAxis label={{value: "Stocks price", angle: -90}}/>
                     <Tooltip/>
                     <Legend verticalAlign="top" height={36} iconSize={20}/>
@@ -40,7 +42,7 @@ export default class StockInfo extends Component {
                     <Line type="monotone" dataKey="Nokia" stroke="#8884d8"/>
                     <Line type="monotone" dataKey="Nordea" stroke="#82ca9d"/>
                     <Line type="monotone" dataKey="Microsoft" stroke="#f08068"/>
-                    <Line type="monotone" dataKey="Telia" stroke=" #f1c46f "/>
+                    <Line type="monotone" dataKey="Telia" stroke=" #f1c46f"/>
                 </LineChart>
             </ResponsiveContainer>
         )
