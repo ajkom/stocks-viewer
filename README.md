@@ -1,4 +1,4 @@
-A demo application showing displaying stocks prices based on a data read from file. <br />
+A demo full-stack application displaying stocks prices based on a data read from file. <br />
 Java, Spring Boot, React.
 
 ### Installation
