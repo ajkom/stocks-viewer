@@ -3,7 +3,7 @@ package com.task.stocksviewer.service;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import com.task.stocksviewer.bean.StocksInfo;
-import com.task.stocksviewer.repository.StockInfoRepository;
+import com.task.stocksviewer.repository.StocksInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ import java.util.List;
 @Service
 public class StocksInfoService {
     @Autowired
-    StockInfoRepository repository;
+	StocksInfoRepository repository;
 
     public void save(List<StocksInfo> infoList) {
         repository.saveAll(infoList);

@@ -1,7 +1,7 @@
 package com.task.stocksviewer.service;
 
 import com.task.stocksviewer.bean.StocksInfo;
-import com.task.stocksviewer.repository.StockInfoRepository;
+import com.task.stocksviewer.repository.StocksInfoRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -19,7 +19,7 @@ import static org.mockito.Mockito.verify;
 @ExtendWith(MockitoExtension.class)
 public class StocksInfoServiceTest {
 	@Mock
-	StockInfoRepository repository;
+	StocksInfoRepository repository;
 	@InjectMocks
 	StocksInfoService service;
 

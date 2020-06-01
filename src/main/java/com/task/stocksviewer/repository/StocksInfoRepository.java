@@ -8,7 +8,7 @@ import java.util.List;
 
 
 @Repository
-public interface StockInfoRepository extends CrudRepository <StocksInfo, Long> {
+public interface StocksInfoRepository extends CrudRepository <StocksInfo, Long> {
 
 	List<StocksInfo> findAll();
 

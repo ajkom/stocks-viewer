@@ -1,6 +1,6 @@
 package com.task.stocksviewer;
 
-import com.task.stocksviewer.repository.StockInfoRepository;
+import com.task.stocksviewer.repository.StocksInfoRepository;
 import com.task.stocksviewer.service.StocksInfoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +18,7 @@ public class StocksViewerApplication {
 	}
 
 	@Bean
-	public CommandLineRunner stocksDemo(StocksInfoService service, StockInfoRepository repository){
+	public CommandLineRunner stocksDemo(StocksInfoService service, StocksInfoRepository repository){
 		return (args) -> {
 			// save data from the file to in-memory DB
 			service.save(service.getDataFromCsvFile());
