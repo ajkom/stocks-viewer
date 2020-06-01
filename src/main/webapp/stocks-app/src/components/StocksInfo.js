@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios';
-import {CartesianGrid, Legend, Line, LineChart, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis} from 'recharts';
+import {CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis} from 'recharts';
 import {Dropdown, DropdownButton} from "react-bootstrap";
 
 export default class StocksInfo extends Component {
@@ -12,15 +12,9 @@ export default class StocksInfo extends Component {
             dates: ["2017-01-01", "2017-02-01", "2017-03-01", "2017-04-01", "2017-05-01", "2017-06-01", "2017-07-01",
                 "2017-08-01", "2017-09-01", "2017-10-01", "2017-11-01", "2017-12-01", "2017-12-31"],
             graphData: [],
-            ticks: [],
-            // show: false,
+            ticks: []
         };
     }
-    // handleClick = () => {
-    //     this.setState({
-    //         show: !this.state.show
-    //     });
-    // };
 
     componentDidMount() {
         axios.get("http://localhost:8080/api/stocks/")
@@ -28,24 +22,6 @@ export default class StocksInfo extends Component {
             .then((data) => {
                 this.setState({stocks: data})
             });
-    }
-
-    renderLine() {
-        const graphData = this.state.graphData;
-        let nokiaHighest = Math.max(...graphData.map(o => o.Nokia));
-        let nokiaLowest = Math.min(...graphData.map(o => o.Nokia));
-        let nordeaHighest = Math.max(...graphData.map(o => o.Nordea));
-        let nordeaLowest = Math.min(...graphData.map(o => o.Nordea));
-        let microsoftHighest = Math.max(...graphData.map(o => o.Microsoft));
-        let microsoftLowest = Math.min(...graphData.map(o => o.Microsoft));
-        let teliaHighest = Math.max(...graphData.map(o => o.Telia));
-        let teliaLowest = Math.min(...graphData.map(o => o.Telia));
-
-        return (
-            <ReferenceLine y={nordeaHighest} label={"Nordea highest: " + nordeaHighest} stroke="red"
-                           strokeDasharray="3 3"/>
-            // <ReferenceLine y={nordeaLowest} label={"Nordea lowest: " + nordeaLowest} stroke="blue" strokeDasharray="3 3"/>
-        );
     }
 
     showData = (param) => {
@@ -95,20 +71,6 @@ export default class StocksInfo extends Component {
         let graphData = this.state.graphData.length !== 0 ? this.state.graphData : this.state.stocks;
         let ticks = this.state.ticks.length !== 0 ? this.state.ticks : this.state.dates;
 
-        // let nordeaH = graphData.filter(obj => {
-        //     let max = Math.max(...graphData.map(o => o.Nordea));
-        //     return obj.Nordea === max;
-        // })[0];
-        //
-        // let nokiaHighest = Math.max(...graphData.map(o => o.Nokia));
-        // let nokiaLowest = Math.min(...graphData.map(o => o.Nokia));
-        // let nordeaHighest = Math.max(...graphData.map(o => o.Nordea));
-        // let nordeaLowest = Math.min(...graphData.map(o => o.Nordea));
-        // let microsoftHighest = Math.max(...graphData.map(o => o.Microsoft));
-        // let microsoftLowest = Math.min(...graphData.map(o => o.Microsoft));
-        // let teliaHighest = Math.max(...graphData.map(o => o.Telia));
-        // let teliaLowest = Math.min(...graphData.map(o => o.Telia));
-
         const renderLineChart = (
             <ResponsiveContainer width={'75%'} height={500}>
                 <LineChart
@@ -124,12 +86,6 @@ export default class StocksInfo extends Component {
                     <Tooltip/>
                     <Legend verticalAlign="top" height={36} iconSize={20}/>
 
-
-                    {/*{this.state.show && this.renderLine()}*/}
-
-                    {/*<ReferenceLine y={nordeaHighest} label={"Nordea max: " + nordeaHighest } stroke="red" strokeDasharray="3 3" />*/}
-                    {/*<ReferenceLine y={nordeaLowest} label={"Nordea min: " + nordeaLowest} stroke="blue" strokeDasharray="3 3"/>*/}
-
                     <Line type="monotone" dataKey="Nokia" stroke="#8884d8"/>
                     <Line type="monotone" dataKey="Nordea" stroke="#82ca9d"/>
                     <Line type="monotone" dataKey="Microsoft" stroke="#f08068"/>
@@ -142,8 +98,6 @@ export default class StocksInfo extends Component {
                 {this.state.stocks.length === 0 ?
                     <p align="center">Waiting for a response from the server</p> : renderLineChart
                 }
-                {/*// // this.renderStuff()*/}
-                {/*<button onClick={this.handleClick}>Toggle min max</button>*/}
 
                 <DropdownButton id="dropdown" title="Choose reporting time period">
                     <Dropdown.Item onClick={() => this.showData()}>Full year</Dropdown.Item>
