@@ -4,12 +4,21 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.opencsv.bean.CsvBindByPosition;
 import com.opencsv.bean.CsvDate;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDate;
 
 /**
  * Map data from the CSV file
  */
+@Entity
 public class StocksInfo {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     @CsvBindByPosition(position = 0, required = true)
     @CsvDate(value = "yyyy-MM-dd")
     private LocalDate date;

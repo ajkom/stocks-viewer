@@ -23,10 +23,10 @@ public class StocksInfoControllerTest {
 
 	@Test
 	public void testGetStockInfo() throws Exception {
-		given(service.getDataFromCsvFile()).willReturn(new ArrayList<>());
+		given(service.getStocksInfo()).willReturn(new ArrayList<>());
 
 		controller.getStockInfo();
-		verify(service).getDataFromCsvFile();
+		verify(service).getStocksInfo();
 	}
 
 }
