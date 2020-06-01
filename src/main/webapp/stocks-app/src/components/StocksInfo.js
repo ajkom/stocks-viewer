@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import axios from 'axios';
-import {CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis} from 'recharts';
+import {CartesianGrid, Legend, Line, LineChart, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis} from 'recharts';
+import {Dropdown, DropdownButton} from "react-bootstrap";
 
 export default class StocksInfo extends Component {
 
@@ -8,10 +9,18 @@ export default class StocksInfo extends Component {
         super(props);
         this.state = {
             stocks: [],
-            ticks: ["2017-01-01", "2017-02-01", "2017-03-01","2017-04-01", "2017-05-01", "2017-06-01", "2017-07-01",
-                "2017-08-01", "2017-09-01", "2017-10-01","2017-11-01", "2017-12-01", "2017-12-31"]
+            dates: ["2017-01-01", "2017-02-01", "2017-03-01", "2017-04-01", "2017-05-01", "2017-06-01", "2017-07-01",
+                "2017-08-01", "2017-09-01", "2017-10-01", "2017-11-01", "2017-12-01", "2017-12-31"],
+            graphData: [],
+            ticks: [],
+            // show: false,
         };
     }
+    // handleClick = () => {
+    //     this.setState({
+    //         show: !this.state.show
+    //     });
+    // };
 
     componentDidMount() {
         axios.get("http://localhost:8080/api/stocks/")
@@ -21,11 +30,87 @@ export default class StocksInfo extends Component {
             });
     }
 
+    renderLine() {
+        const graphData = this.state.graphData;
+        let nokiaHighest = Math.max(...graphData.map(o => o.Nokia));
+        let nokiaLowest = Math.min(...graphData.map(o => o.Nokia));
+        let nordeaHighest = Math.max(...graphData.map(o => o.Nordea));
+        let nordeaLowest = Math.min(...graphData.map(o => o.Nordea));
+        let microsoftHighest = Math.max(...graphData.map(o => o.Microsoft));
+        let microsoftLowest = Math.min(...graphData.map(o => o.Microsoft));
+        let teliaHighest = Math.max(...graphData.map(o => o.Telia));
+        let teliaLowest = Math.min(...graphData.map(o => o.Telia));
+
+        return (
+            <ReferenceLine y={nordeaHighest} label={"Nordea highest: " + nordeaHighest} stroke="red"
+                           strokeDasharray="3 3"/>
+            // <ReferenceLine y={nordeaLowest} label={"Nordea lowest: " + nordeaLowest} stroke="blue" strokeDasharray="3 3"/>
+        );
+    }
+
+    showData = (param) => {
+        let graph = [];
+        let ticks = [];
+        /*
+        * Dates need to be fine-grained manually because they are irregular.
+        * "+1" needed for end position because count starts from 0
+        * */
+        switch (param) {
+            case "full":
+                break;
+            case "1-6":
+                graph = this.state.stocks.slice(0, 181 + 1);
+                ticks = this.state.dates.slice(0, 6 + 1);
+                break;
+            case "7-12":
+                graph = this.state.stocks.slice(181, 365 + 1);
+                ticks = this.state.dates.slice(6, 12 + 1);
+                break;
+            case "1-3":
+                graph = this.state.stocks.slice(0, 90 + 1);
+                ticks = this.state.dates.slice(0, 3 + 1);
+                break;
+            case "4-6":
+                graph = this.state.stocks.slice(90, 181 + 1);
+                ticks = this.state.dates.slice(3, 6 + 1);
+                break;
+            case "7-9":
+                graph = this.state.stocks.slice(181, 273 + 1);
+                ticks = this.state.dates.slice(6, 9 + 1);
+                break;
+            case "10-12":
+                graph = this.state.stocks.slice(273, 365 + 1);
+                ticks = this.state.dates.slice(9, 12 + 1);
+                break;
+        }
+
+        this.setState({
+            graphData: graph,
+            ticks: ticks
+        })
+    };
+
     render() {
-        const graphData = this.state.stocks
+        // State changes when different time periods are selected in dropdown
+        let graphData = this.state.graphData.length !== 0 ? this.state.graphData : this.state.stocks;
+        let ticks = this.state.ticks.length !== 0 ? this.state.ticks : this.state.dates;
+
+        // let nordeaH = graphData.filter(obj => {
+        //     let max = Math.max(...graphData.map(o => o.Nordea));
+        //     return obj.Nordea === max;
+        // })[0];
+        //
+        // let nokiaHighest = Math.max(...graphData.map(o => o.Nokia));
+        // let nokiaLowest = Math.min(...graphData.map(o => o.Nokia));
+        // let nordeaHighest = Math.max(...graphData.map(o => o.Nordea));
+        // let nordeaLowest = Math.min(...graphData.map(o => o.Nordea));
+        // let microsoftHighest = Math.max(...graphData.map(o => o.Microsoft));
+        // let microsoftLowest = Math.min(...graphData.map(o => o.Microsoft));
+        // let teliaHighest = Math.max(...graphData.map(o => o.Telia));
+        // let teliaLowest = Math.min(...graphData.map(o => o.Telia));
 
         const renderLineChart = (
-            <ResponsiveContainer width={'80%'} height={700}>
+            <ResponsiveContainer width={'75%'} height={500}>
                 <LineChart
                     margin={{
                         top: 5, right: 30, left: 20, bottom: 5,
@@ -34,10 +119,16 @@ export default class StocksInfo extends Component {
 
                     <CartesianGrid strokeDasharray="3 3"/>
 
-                    <XAxis dataKey="date" ticks={this.state.ticks}/>
+                    <XAxis dataKey="date" ticks={ticks}/>
                     <YAxis label={{value: "Stocks price", angle: -90}}/>
                     <Tooltip/>
                     <Legend verticalAlign="top" height={36} iconSize={20}/>
+
+
+                    {/*{this.state.show && this.renderLine()}*/}
+
+                    {/*<ReferenceLine y={nordeaHighest} label={"Nordea max: " + nordeaHighest } stroke="red" strokeDasharray="3 3" />*/}
+                    {/*<ReferenceLine y={nordeaLowest} label={"Nordea min: " + nordeaLowest} stroke="blue" strokeDasharray="3 3"/>*/}
 
                     <Line type="monotone" dataKey="Nokia" stroke="#8884d8"/>
                     <Line type="monotone" dataKey="Nordea" stroke="#82ca9d"/>
@@ -45,11 +136,27 @@ export default class StocksInfo extends Component {
                     <Line type="monotone" dataKey="Telia" stroke=" #f1c46f"/>
                 </LineChart>
             </ResponsiveContainer>
-        )
+        );
         return (
-            this.state.stocks.length === 0 ?
-                <p align="center">Waiting for a response from the server</p> :
-                renderLineChart
+            <div className="m-5">
+                {this.state.stocks.length === 0 ?
+                    <p align="center">Waiting for a response from the server</p> : renderLineChart
+                }
+                {/*// // this.renderStuff()*/}
+                {/*<button onClick={this.handleClick}>Toggle min max</button>*/}
+
+                <DropdownButton id="dropdown" title="Choose reporting time period">
+                    <Dropdown.Item onClick={() => this.showData()}>Full year</Dropdown.Item>
+                    <Dropdown.Item onClick={() => this.showData("1-6")}>First half (Jan 1 - July 1)</Dropdown.Item>
+                    <Dropdown.Item onClick={() => this.showData("7-12")}>Second half (July 1 - Dec 31)</Dropdown.Item>
+                    <Dropdown.Item onClick={() => this.showData("1-3")}>First quarter (Jan 1 - Apr 1)</Dropdown.Item>
+                    <Dropdown.Item onClick={() => this.showData("4-6")}>Second quarter (Apr 1 - July 1)</Dropdown.Item>
+                    <Dropdown.Item onClick={() => this.showData("7-9")}>Third quarter (July 1 - Oct 1)</Dropdown.Item>
+                    <Dropdown.Item onClick={() => this.showData("10-12")}>Last quarter (Oct 1 - Dec 31)</Dropdown.Item>
+                </DropdownButton>
+
+            </div>
+
         );
     }
 
