@@ -16,7 +16,7 @@ public class StocksInfoController {
 	StocksInfoService service;
 
 	@GetMapping
-	public List<StocksInfo> getStockInfo() throws Exception {
-		return service.getDataFromCsvFile();
+	public List<StocksInfo> getStockInfo() {
+		return service.getStocksInfo();
 	}
 }
