@@ -58,6 +58,8 @@ export default class StocksInfo extends Component {
                 graph = this.state.stocks.slice(273, 365 + 1);
                 ticks = this.state.dates.slice(9, 12 + 1);
                 break;
+            default:
+                break;
         }
 
         this.setState({
@@ -95,6 +97,7 @@ export default class StocksInfo extends Component {
         );
         return (
             <div className="m-5">
+                <h2>Stocks performance</h2>
                 {this.state.stocks.length === 0 ?
                     <p align="center">Waiting for a response from the server</p> : renderLineChart
                 }
