@@ -5,7 +5,7 @@ Java, Spring Boot, React.
 1. `git clone https://github.com/ajkom/stocks-viewer.git`
 2. `cd stocks-viewer`
 3. `mvn install` (first installation might take some minutes)
-4. `java -jar target/stocks-viewer`
+4. `java -jar target/stocks-viewer.jar`
 
 ### Usage
 Open http://localhost:8080/ in the browser
