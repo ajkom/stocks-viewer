@@ -1,4 +1,4 @@
-package com.task.stocksviewer.bean;
+package com.task.stocksviewer.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.opencsv.bean.CsvBindByPosition;

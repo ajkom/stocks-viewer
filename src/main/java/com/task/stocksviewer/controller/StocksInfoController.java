@@ -1,6 +1,6 @@
 package com.task.stocksviewer.controller;
 
-import com.task.stocksviewer.bean.StocksInfo;
+import com.task.stocksviewer.entity.StocksInfo;
 import com.task.stocksviewer.service.StocksInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

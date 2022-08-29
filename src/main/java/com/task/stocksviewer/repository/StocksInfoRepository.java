@@ -1,6 +1,6 @@
 package com.task.stocksviewer.repository;
 
-import com.task.stocksviewer.bean.StocksInfo;
+import com.task.stocksviewer.entity.StocksInfo;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
