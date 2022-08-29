@@ -1,6 +1,6 @@
 package com.task.stocksviewer.service;
 
-import com.task.stocksviewer.bean.StocksInfo;
+import com.task.stocksviewer.entity.StocksInfo;
 import com.task.stocksviewer.repository.StocksInfoRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

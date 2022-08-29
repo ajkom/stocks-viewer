@@ -2,7 +2,7 @@ package com.task.stocksviewer.service;
 
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
-import com.task.stocksviewer.bean.StocksInfo;
+import com.task.stocksviewer.entity.StocksInfo;
 import com.task.stocksviewer.repository.StocksInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
